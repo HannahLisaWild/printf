@@ -6,7 +6,7 @@
 /*   By: hawild <hawild@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 17:33:33 by hawild            #+#    #+#             */
-/*   Updated: 2024/01/24 16:11:06 by hawild           ###   ########.fr       */
+/*   Updated: 2024/01/29 17:42:24 by hawild           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_type_convertions(va_list *args, int *count, char c)
 	else if (c == 'u')
 		ft_print_unsigned(va_arg(*args, unsigned int), count);
 	else if (c == 'X' || c == 'x')
-		ft_print_hex(va_arg(*args, unsigned long long), count, c);
+		ft_print_hex(va_arg(*args, unsigned int), count, c);
 	else if (c == 's')
 		ft_print_str(va_arg(*args, char *), count);
 	else if (c == 'c')
@@ -46,6 +46,8 @@ int	ft_printf(const char *format, ...)
 		{
 			i++;
 			ft_type_convertions(&args, &count, format[i]);
+			if (format[i] == '\0')
+				break;
 			i++;
 		}
 		else
@@ -65,12 +67,9 @@ int	ft_printf(const char *format, ...)
 
 // 	test = NULL;
 // 	printf("PRINTF:\n");
-// 	printf("RETURN VALUE: %d\n\n", printf("%c||%s||%d||%i||%u||%x||%X||%p||%%",
-// 			0, test, 0, 0, 42, 42, 0, (void *)0));
+// 	printf("RETURN VALUE: %d\n\n", printf("%c||%s||%d||%i||%u||%x||%X||%p||%%", 0, test, 0, 0, 42, 42, 0, (void *)0));
 // 	printf("FT_PRINTF:\n");
-// 	ft_printf("RETURN VALUE: %d\n\n",
-// 		ft_printf("%c||%s||%d||%i||%u||%x||%X||%p||%%", 0, test, 0, 0, 42, 42,
-// 			0, (void *)0));
+// 	ft_printf("RETURN VALUE: %d\n\n", ft_printf("%c||%s||%d||%i||%u||%x||%X||%p||%%", 0, test, 0, 0, 42, 42, 0, (void *)0));
 // }
 
 // int	main(void)
@@ -121,11 +120,7 @@ int	ft_printf(const char *format, ...)
 // {
 // 	int	result;
 // 	int	my_result;
-// 	int	x;
-// 	int	*ptr;
 
-// 	x = 42;
-// 	ptr = &x;
 // 	my_result = ft_printf("my_printf: hex value x (2ed): %x\n", 749);
 // 	result = printf("my_printf: hex value x (2ed): %x\n", 749);
 // 	ft_printf("my printf result: %d\n", my_result);

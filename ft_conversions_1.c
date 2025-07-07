@@ -6,7 +6,7 @@
 /*   By: hawild <hawild@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 13:10:12 by hawild            #+#    #+#             */
-/*   Updated: 2024/01/23 10:46:03 by hawild           ###   ########.fr       */
+/*   Updated: 2024/01/25 17:37:15 by hawild           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int	ft_print_num(int n, int *count)
 
 	index = 0;
 	num_str = ft_itoa(n);
+	if (!num_str)
+		
 	while (num_str[index] != '\0')
 	{
 		write(1, &num_str[index], 1);
